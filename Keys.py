@@ -1,0 +1,5 @@
+consumer_key = "btUzjTMtoLGCelADkrveGDHnI"
+consumer_secret = "SUwiFAFrqqUSr9FXPyYfDXktQUaAAccvhrH3tqfvc1ou711DF6"
+access_token = "1114317126561685511-TWSD5vCS3jZh2KtfGNOoJ9vsnmSSOu"
+access_secret = "v7Bc3BO8cclEzzBL0qhC5u0ZyVp4YHrAyo6BDVEcVLhM0"
+darksky_key = "1b344af14054572a62de555a58e4bf7d"
