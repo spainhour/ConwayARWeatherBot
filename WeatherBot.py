@@ -6,17 +6,19 @@ from Keys import *
 daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 def main():
-    url = "https://api.darksky.net/forecast/1b344af14054572a62de555a58e4bf7d/35.090328, -92.441559"
-    data = requests.get(url).json()
-    date = getDate(data)
-    low_temp = getLowTemp(data)
-    high_temp = getHighTemp(data)
-    precip_probability = getPrecipProb(data)
-    weekday = getWeekday(data)
-    summary = getSummary(data)
-    message = writeMessage(date, low_temp, high_temp, precip_probability, weekday, summary)
-    tweet(message)
-    print(message)
+    inputQuestion = input("Tweet the daily weather forecast? y/n ")
+    if inputQuestion == "y":
+        url = "https://api.darksky.net/forecast/1b344af14054572a62de555a58e4bf7d/35.090328, -92.441559"
+        data = requests.get(url).json()
+        date = getDate(data)
+        low_temp = getLowTemp(data)
+        high_temp = getHighTemp(data)
+        precip_probability = getPrecipProb(data)
+        weekday = getWeekday(data)
+        summary = getSummary(data)
+        message = writeMessage(date, low_temp, high_temp, precip_probability, weekday, summary)
+#        tweet(message)
+        print(message)
 
 def tweet(message):
     account = tweepy.OAuthHandler(consumer_key, consumer_secret)
