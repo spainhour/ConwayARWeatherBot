@@ -14,15 +14,15 @@ def main():
         if weekday == "Monday":
             date = getDate(data)
             weeklySummary = getWeeklySummary(data)
-            message = writeMessage(date, weekday, weeklySummary, None, None, None)
-        else:
-            date = getDate(data)
-            low_temp = getLowTemp(data)
-            high_temp = getHighTemp(data)
-            dailySummary = getSummary(data)
-            message = writeMessage(date, weekday, dailySummary, low_temp, high_temp)
-#       tweet(message)
-        print(message)
+            mondayMessage = writeMondayMessage(date, weekday, weeklySummary)
+            tweet(mondayMessage)
+            print(mondayMessage)
+        low_temp = getLowTemp(data)
+        high_temp = getHighTemp(data)
+        dailySummary = getSummary(data)
+        dailyMessage = writeMessage(date, weekday, dailySummary, low_temp, high_temp)
+        tweet(dailyMessage)
+        print(dailyMessage)
 
 def tweet(message):
     account = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -56,14 +56,14 @@ def getDate(data):
     date = str(datetime.date.fromtimestamp(date))
     return date
 
-def writeMessage(date, weekday, summary, low_temp=None, high_temp=None, precip_probability=None):
-    if weekday == "Monday":
-        return("Today is " + weekday + ", " + str(date) \
-        + ". " + summary)
-    else:
-        return("Today is " + weekday + ", " + str(date) \
-        + ". The high for today is " + str(high_temp) \
-        + ", and the low is " + str(low_temp) + "." \
-        + summary)
+def writeMondayMessage(date, weekday, weeklySummary):
+    return("Today is " + weekday + ", " + str(date) \
+    + ". " + weeklySummary)
+
+def writeMessage(date, weekday, summary, low_temp, high_temp):
+    return("Today is " + weekday + ", " + str(date) \
+    + ". The high for today is " + str(high_temp) \
+    + ", and the low is " + str(low_temp) + ". " \
+    + summary)
 
 main()
