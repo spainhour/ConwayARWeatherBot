@@ -11,17 +11,17 @@ def main():
         url = "https://api.darksky.net/forecast/1b344af14054572a62de555a58e4bf7d/35.090328, -92.441559"
         data = requests.get(url).json()
         weekday = getWeekday(data)
+        date = getDate(data)
         if weekday == "Monday":
-            date = getDate(data)
             weeklySummary = getWeeklySummary(data)
             mondayMessage = writeMondayMessage(date, weekday, weeklySummary)
-            tweet(mondayMessage)
+#            tweet(mondayMessage)
             print(mondayMessage)
         low_temp = getLowTemp(data)
         high_temp = getHighTemp(data)
         dailySummary = getSummary(data)
         dailyMessage = writeMessage(date, weekday, dailySummary, low_temp, high_temp)
-        tweet(dailyMessage)
+#        tweet(dailyMessage)
         print(dailyMessage)
 
 def tweet(message):
