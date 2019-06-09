@@ -1,7 +1,9 @@
+#!/usr/bin/python3.6
 import requests
 import datetime
 import tweepy
 from Keys import *
+
 
 daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -15,14 +17,15 @@ def main():
         if weekday == "Monday":
             weeklySummary = getWeeklySummary(data)
             mondayMessage = writeMondayMessage(date, weekday, weeklySummary)
-#            tweet(mondayMessage)
+            tweet(mondayMessage)
             print(mondayMessage)
         low_temp = getLowTemp(data)
         high_temp = getHighTemp(data)
         dailySummary = getSummary(data)
         dailyMessage = writeMessage(date, weekday, dailySummary, low_temp, high_temp)
-#        tweet(dailyMessage)
+        tweet(dailyMessage)
         print(dailyMessage)
+
 
 def tweet(message):
     account = tweepy.OAuthHandler(consumer_key, consumer_secret)
