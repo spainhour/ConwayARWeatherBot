@@ -1,31 +1,26 @@
-#!/usr/bin/python3.6
 import requests
 import datetime
 import tweepy
-from Keys import *
-
+from Keys import consumer_key, consumer_secret, access_token, access_secret
 
 daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 def main():
-    inputQuestion = input("Tweet the weather forecast? y/n ")
-    if inputQuestion == "y":
-        url = "https://api.darksky.net/forecast/1b344af14054572a62de555a58e4bf7d/35.090328, -92.441559"
-        data = requests.get(url).json()
-        weekday = getWeekday(data)
-        date = getDate(data)
-        if weekday == "Monday":
-            weeklySummary = getWeeklySummary(data)
-            mondayMessage = writeMondayMessage(date, weekday, weeklySummary)
-            tweet(mondayMessage)
-            print(mondayMessage)
-        low_temp = getLowTemp(data)
-        high_temp = getHighTemp(data)
-        dailySummary = getSummary(data)
-        dailyMessage = writeMessage(date, weekday, dailySummary, low_temp, high_temp)
-        tweet(dailyMessage)
-        print(dailyMessage)
-
+    url = "https://api.darksky.net/forecast/1b344af14054572a62de555a58e4bf7d/35.090328, -92.441559"
+    data = requests.get(url).json()
+    weekday = getWeekday(data)
+    date = getDate(data)
+    if weekday == "Monday":
+        weeklySummary = getWeeklySummary(data)
+        mondayMessage = writeMondayMessage(date, weekday, weeklySummary)
+        tweet(mondayMessage)
+        print(mondayMessage)
+    low_temp = getLowTemp(data)
+    high_temp = getHighTemp(data)
+    dailySummary = getSummary(data)
+    dailyMessage = writeMessage(date, weekday, dailySummary, low_temp, high_temp)
+    tweet(dailyMessage)
+    print(dailyMessage)
 
 def tweet(message):
     account = tweepy.OAuthHandler(consumer_key, consumer_secret)
